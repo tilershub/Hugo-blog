@@ -1,0 +1,24 @@
+{{ define "title" }}{{ .Title }} | FXFORECAST{{ end }}
+{{ define "main" }}
+  <article class="post">
+    <h1>{{ .Title }}</h1>
+    <p class="muted">{{ .Date.Format "Jan 2, 2006" }}</p>
+    {{ with .Params.tags }}
+      <p class="tags">Tags: {{ delimit . ", " }}</p>
+    {{ end }}
+    <div class="content">
+      {{ .Content }}
+    </div>
+  </article>
+
+  {{ partial "adsense/unit.html" (dict "slot" "" "demo" .Site.Params.show_demo_ads) }}
+
+  <section class="more">
+    <h3>More posts</h3>
+    <ul>
+      {{ range first 5 (where .Site.RegularPages "Section" "posts") }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}

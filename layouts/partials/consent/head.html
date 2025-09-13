@@ -1,0 +1,8 @@
+{{- if .Site.Params.consent_mode -}}
+<script>
+  // Default to denied until user accepts
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.__fx_consent = localStorage.getItem('fx_consent') || 'denied';
+</script>
+{{- end -}}

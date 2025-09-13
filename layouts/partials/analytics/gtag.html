@@ -1,0 +1,26 @@
+{{ $id := .Site.Params.ga_measurement_id }}
+{{ if and $id (ne $id "") }}
+<script>
+  // Only load GA when consent is granted (or consent mode disabled)
+  (function(){
+    function loadGA(){
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id={{ $id }}';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', '{{ $id }}');
+    }
+    if(window.__fx_consent === 'granted' || !{{ if .Site.Params.consent_mode }}true{{ else }}false{{ end }} ){
+      loadGA();
+    } else {
+      document.addEventListener('fx:consent', function(e){
+        if(e.detail === 'granted'){ loadGA(); }
+      });
+    }
+  })();
+</script>
+{{ end }}

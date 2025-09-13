@@ -1,19 +1,59 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'FXFORECAST'
-theme = 'ananke'
+baseURL = "/"
+languageCode = "en-us"
+title = "FXFORECAST"
+paginate = 10
+enableRobotsTXT = true
+
+[build]
+  writeStats = false
+
+[minify]
+  disableXML = false
+  minifyOutput = true
+
+[permalinks]
+  posts = "/blog/:year/:month/:slug/"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+# Google Analytics 4 (gtag) + AdSense IDs provided via params
 [params]
-description = "A blog dedicated to providing forecasts and analysis on the foreign exchange market."
-favicon = ""
-site_logo = ""
-hide_description = false
-hide_title = false
+  description = "Professional funded trading framework • position sizing • risk management • tools"
+  author = "FXFORECAST"
+  ga_measurement_id = ""   # e.g., G-XXXXXXXXXX
+  adsense_client_id  = ""  # e.g., ca-pub-1234567890123456
+  consent_mode = true
+  show_demo_ads = true     # shows a demo ad unit if true (remove in production)
+  socials = [
+    { name = "Twitter", url = "https://x.com/" },
+    { name = "YouTube", url = "https://youtube.com/" },
+    { name = "TikTok", url = "https://tiktok.com/" }
+  ]
+
 [menu]
-[[menu.main]]
-name = "Home"
-url = "/"
-weight = 1
-[[menu.main]]
-name = "About"
-url = "/about/"
-weight = 2
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    name = "Tools"
+    url = "/tools/"
+    weight = 3
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 4
+  [[menu.main]]
+    name = "Privacy"
+    url = "/privacy/"
+    weight = 5
+  [[menu.main]]
+    name = "Terms"
+    url = "/terms/"
+    weight = 6

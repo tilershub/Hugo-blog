@@ -1,0 +1,29 @@
+{{- if .Site.Params.consent_mode -}}
+<div id="consent-banner" class="consent {{ if eq (index .Site.Params "consent_mode") true }}show{{ end }}">
+  <div class="consent-inner">
+    <p>We use cookies for analytics and ads. Do you accept?</p>
+    <div class="consent-actions">
+      <button id="consent-accept">Accept</button>
+      <button id="consent-decline">Decline</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  const key = 'fx_consent';
+  const saved = localStorage.getItem(key);
+  const banner = document.getElementById('consent-banner');
+  function setConsent(val){
+    localStorage.setItem(key, val);
+    window.__fx_consent = val;
+    if(banner) banner.classList.remove('show');
+    // Fire a custom event so GA/Adsense loaders can react
+    document.dispatchEvent(new CustomEvent('fx:consent', {{ detail: val }}));
+  }
+  if(saved === 'granted'){ banner && banner.classList.remove('show'); }
+  else if(saved === 'denied' || !saved){ banner && banner.classList.add('show'); }
+  document.getElementById('consent-accept')?.addEventListener('click', ()=>setConsent('granted'));
+  document.getElementById('consent-decline')?.addEventListener('click', ()=>setConsent('denied'));
+})();
+</script>
+{{- end -}}

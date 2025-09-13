@@ -1,0 +1,21 @@
+{{ $client := .Site.Params.adsense_client_id }}
+{{ if and $client (ne $client "") }}
+<script>
+(function(){
+  function loadAds(){
+    var s = document.createElement('script');
+    s.async = true;
+    s.crossOrigin = 'anonymous';
+    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ $client }}';
+    document.head.appendChild(s);
+  }
+  if(window.__fx_consent === 'granted' || !{{ if .Site.Params.consent_mode }}true{{ else }}false{{ end }} ){
+    loadAds();
+  } else {
+    document.addEventListener('fx:consent', function(e){
+      if(e.detail === 'granted'){ loadAds(); }
+    });
+  }
+})();
+</script>
+{{ end }}

@@ -1,0 +1,17 @@
+{{/* Usage: {{ partial "adsense/unit.html" (dict "slot" "1234567890") }} */}}
+{{ $client := .Site.Params.adsense_client_id }}
+{{ $slot := .slot }}
+{{ $demo := .demo }}
+{{ if and $client (ne $client "") }}
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="{{ $client }}"
+       {{ if $slot }}data-ad-slot="{{ $slot }}"{{ end }}
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+    try{ (adsbygoogle = window.adsbygoogle || []).push({{}); }catch(e){}
+  </script>
+{{ else if $demo }}
+  <div class="ad-demo">Ad placeholder — set <code>params.adsense_client_id</code> to enable live ads.</div>
+{{ end }}
