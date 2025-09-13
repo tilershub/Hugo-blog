@@ -1,0 +1,19 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'FXFORECAST'
+theme = 'ananke'
+[params]
+description = "A blog dedicated to providing forecasts and analysis on the foreign exchange market."
+favicon = ""
+site_logo = ""
+hide_description = false
+hide_title = false
+[menu]
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+[[menu.main]]
+name = "About"
+url = "/about/"
+weight = 2
