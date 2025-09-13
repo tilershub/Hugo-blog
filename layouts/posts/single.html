@@ -6,18 +6,25 @@
     <title>{{ .Title }}</title>
     <!-- Link to the main stylesheet -->
     <link rel="stylesheet" href="/css/styles.css">
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <h1>{{ .Title }}</h1>
-        <p>Published: {{ .Date.Format "January 2, 2006" }}</p>
-    </header>
-    <main>
-        {{ .Content }}
+<body class="bg-gray-100 font-sans">
+    
+    <!-- Include the header partial -->
+    {{ partial "header.html" . }}
+
+    <main class="container mx-auto p-4 max-w-2xl bg-white shadow-lg rounded-lg my-8">
+        <article class="prose lg:prose-xl">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">{{ .Title }}</h1>
+            <p class="text-gray-500 text-sm italic mb-6">Published: {{ .Date.Format "January 2, 2006" }}</p>
+            {{ .Content }}
+        </article>
     </main>
-    <footer>
-        <p>Return to <a href="{{ "/" | relURL }}">Home</a></p>
-    </footer>
+    
+    <!-- Include the footer partial -->
+    {{ partial "footer.html" . }}
+    
 </body>
 </html>
 
