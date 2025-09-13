@@ -1,6 +1,45 @@
-<!-- Default list layout -->
-<html>
-  <body>
-    <h1>Post List</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ .Site.Title }}</title>
+<style>
+body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+.container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+header { text-align: center; padding-bottom: 20px; border-bottom: 2px solid #ddd; }
+h1 { margin: 0; }
+.post-list { list-style: none; padding: 0; }
+.post-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+.post-title a { text-decoration: none; color: #007bff; font-weight: bold; font-size: 1.2em; }
+.post-meta { font-size: 0.9em; color: #777; }
+footer { text-align: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 0.8em; color: #555; }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1><a href="/">{{ .Site.Title }}</a></h1>
+<p>{{ .Site.Params.description }}</p>
+</header>
+<main>
+<ul class="post-list">
+{{ range .Paginator.Pages }}
+<li class="post-item">
+<h2 class="post-title">
+<a href="{{ .Permalink }}">{{ .Title }}</a>
+</h2>
+<p class="post-meta">
+{{ .Date.Format "January 2, 2006" }}
+</p>
+<p>{{ .Description }}</p>
+</li>
+{{ end }}
+</ul>
+</main>
+<footer>
+<p>&copy; {{ now.Year }} {{ .Site.Title }}</p>
+</footer>
+</div>
+</body>
 </html>
