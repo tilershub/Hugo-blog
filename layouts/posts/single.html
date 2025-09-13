@@ -1,7 +1,23 @@
-<!-- Single post layout -->
-<html>
-  <body>
-    <h1>Post Title</h1>
-    <div>{{ .Content }}</div>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <!-- Link to the main stylesheet -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>{{ .Title }}</h1>
+        <p>Published: {{ .Date.Format "January 2, 2006" }}</p>
+    </header>
+    <main>
+        {{ .Content }}
+    </main>
+    <footer>
+        <p>Return to <a href="{{ "/" | relURL }}">Home</a></p>
+    </footer>
+</body>
 </html>
+
